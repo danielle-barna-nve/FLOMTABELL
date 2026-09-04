@@ -7,7 +7,7 @@ This repository contains the datasets and table-generation scripts used by a Das
 The Dash app itself is located in:
 
 ```text
-frist_week_sept_published/
+first_week_sept_published/
 ```
 
 The main purpose of this repository is to store the source data and scripts that generate the tables consumed by that app.
