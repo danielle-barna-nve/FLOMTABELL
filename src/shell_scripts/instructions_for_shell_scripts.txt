@@ -1,0 +1,19 @@
+## make the findata tabell
+bash join-annmax-with-lookups.sh --commands-dir ./lvc --join-max-file 1001_b0_39.txt --join-lookup-file 1001_b0_2.txt --join-lookup-file-2 1000_b0_39.txt --join-lookup-file-3 1000_b0_2.txt --join-output findata_tabell.tsv --col-annual-max-value hyfinc_vannfring --col-annual-max-ts hyfinc_datetime --col-lookup1 hykval_vannfring --col-lookup2 hyfinc_vannstand --col-lookup3 hykval_vannstand
+
+
+## streamflow day table
+bash join-annmax-with-lookups.sh --commands-dir ./lvc --join-max-file 1001_b0_37.txt --join-lookup-file 1001_b1440_2.txt --join-output day_streamflow_partA.tsv --col-annual-max-value hydag_vannføring --col-annual-max-ts hydag_datetime --col-lookup1 hykval_kalendardgn_vannfring
+
+
+bash join-annmax-with-lookups.sh --commands-dir ./lvc --join-max-file 1001_b60_G1440_39.txt --join-lookup-file 1001_b60_G1440_2.txt --join-output day_streamflow_partB.tsv --col-annual-max-value hyfinc_24t_vannfring --col-annual-max-ts hyfinc_24t_datetime --col-lookup1 hykval_24t_vannfring
+
+bash outer-join-two-annmax-runs.sh --left day_streamflow_partA.tsv --right day_streamflow_partB.tsv --output day_streamflow_table.tsv
+
+
+## water level day table
+bash join-annmax-with-lookups.sh --commands-dir ./lvc --join-max-file 1000_b0_37.txt --join-lookup-file 1000_b1440_2.txt --join-output day_waterlevel_partA.tsv --col-annual-max-value hydag_vannstand --col-annual-max-ts hydag_datetime --col-lookup1 hykval_kalendardgn_vannstand
+
+bash join-annmax-with-lookups.sh --commands-dir ./lvc --join-max-file 1000_b60_G1440_39.txt --join-lookup-file 1000_b60_G1440_2.txt --join-output day_waterlevel_partB.tsv --col-annual-max-value hyfinc_24t_vannstand --col-annual-max-ts hyfinc_24t_datetime --col-lookup1 hykval_24t_vannstand
+
+bash outer-join-two-annmax-runs.sh --left day_waterlevel_partA.tsv --right day_waterlevel_partB.tsv --output day_waterlevel_table.tsv
