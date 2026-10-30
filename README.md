@@ -2,6 +2,8 @@
 
 This repository contains the datasets and table-generation scripts used by a Dash application.
 
+As of 30.10.2026, the dash app is at: https://caf21a98-bad7-4aa8-9067-6e5c49895c7a.plotly.app/
+
 ## Project Overview
 
 The Dash app itself is located in:
